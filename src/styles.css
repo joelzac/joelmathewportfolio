@@ -360,8 +360,70 @@ ul {
     color: var(--color-text-dark);
 }
 
+/* Paste this new CSS code before your media queries */
+
+/* Social Links Sidebar (Desktop) */
+.social-links {
+    position: fixed;
+    bottom: 0;
+    left: 40px;
+    z-index: 10;
+}
+
+.social-links ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.social-links ul::after {
+    content: '';
+    display: block;
+    width: 1px;
+    height: 90px;
+    background-color: var(--color-text-dark);
+    margin-top: 1rem;
+}
+
+.social-links a {
+    display: inline-block;
+    padding: 0.5rem;
+}
+
+.social-links svg {
+    width: 20px;
+    height: 20px;
+    stroke: var(--color-text-dark);
+    transition: transform var(--transition-speed), stroke var(--transition-speed);
+}
+
+.social-links a:hover svg {
+    transform: translateY(-3px);
+    stroke: var(--color-accent);
+}
+
+/* Social Links in Footer (Mobile) */
+.footer__socials {
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.footer__socials svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--color-text-dark);
+    transition: stroke var(--transition-speed);
+}
+
+.footer__socials a:hover svg {
+    stroke: var(--color-accent);
+}
+
 /* 13. Media Queries */
 @media (min-width: 768px) {
+    .footer__socials { display: none; }
     .section { padding: 100px 40px; }
     
     .nav { display: block !important; }
@@ -415,6 +477,8 @@ ul {
     .nav-toggle.active .hamburger::after {
         opacity: 0;
     }
+
+    .social-links { display: none; }
 }
 
 /* Responsive adjustments for the Hero Section on small devices */
