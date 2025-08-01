@@ -62,3 +62,32 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+// 5. Theme Switching Logic
+const themeToggle = document.getElementById('theme-toggle');
+const docElement = document.documentElement; // The <html> element
+
+// Function to set the theme
+const setTheme = (theme) => {
+    docElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+};
+
+// Check for saved theme in localStorage or user's system preference
+const savedTheme = localStorage.getItem('theme');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+if (savedTheme) {
+    setTheme(savedTheme);
+} else if (prefersDark) {
+    setTheme('dark');
+} else {
+    setTheme('light');
+}
+
+// Event listener for the toggle button
+themeToggle.addEventListener('click', () => {
+    const currentTheme = docElement.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
+});
